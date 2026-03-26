@@ -1,0 +1,76 @@
+{
+  "model_name": "progression_arbiter_v1",
+  "model_type": "L2_regularized_logistic_regression",
+  "lambda": 0.5,
+  "n_training": 239,
+  "n_pseudo": 148,
+  "n_true_prog": 91,
+  "intercept": -0.7492750511305589,
+  "coefficients": {
+    "img_NEW_SCLEROTIC_BONE": -1.2729851027607395,
+    "img_SUV_INCREASE_NO_SIZE": 0.7646724580579327,
+    "img_SUB_5MM_SIZE_INCREASE": 0.0,
+    "img_NEW_SOFT_TISSUE_LESION": 0.0,
+    "img_RECIST_PROGRESSION": 3.111361566694897,
+    "img_STABLE_DISEASE": -2.7337917566376824,
+    "tx_CDK46": -0.19731872935468941,
+    "tx_HER2": 0.09066318861222862,
+    "tx_ENDOCRINE": -0.10923823833803903,
+    "tx_CHEMO": 0.08515094443489317,
+    "tx_IO": 0.0,
+    "symptomatic": 1.9942049324313278,
+    "new_pain_at_site": 0.5769268558351399,
+    "healing_flag": -3.138130706991578,
+    "weeks_since_therapy_start_norm": 0.338955705086553,
+    "alp_delta_norm": 0.558304874993462,
+    "ca153_delta_norm": 0.0
+  },
+  "feature_encodings": {
+    "imaging_change_type": {
+      "ONE_HOT": [
+        "NEW_SCLEROTIC_BONE",
+        "SUV_INCREASE_NO_SIZE",
+        "SUB_5MM_SIZE_INCREASE",
+        "NEW_SOFT_TISSUE_LESION",
+        "RECIST_PROGRESSION",
+        "STABLE_DISEASE"
+      ],
+      "REFERENCE": "OTHER_OR_UNCLEAR"
+    },
+    "therapy_class": {
+      "ONE_HOT": [
+        "CDK46",
+        "HER2",
+        "ENDOCRINE",
+        "CHEMO",
+        "IO"
+      ],
+      "REFERENCE": "OTHER"
+    },
+    "symptomatic": {
+      "true": 1.0,
+      "false": 0.0,
+      "unknown": 0.5
+    },
+    "new_pain_at_site": {
+      "true": 1.0,
+      "false": 0.0,
+      "unknown": 0.5
+    },
+    "healing_flag": {
+      "true": 1.0,
+      "false": 0.0
+    },
+    "weeks_since_therapy_start_norm": "raw_weeks / 52.0",
+    "alp_delta_norm": "alp_delta_pct / 100.0",
+    "ca153_delta_norm": "ca153_delta_pct / 100.0"
+  },
+  "performance": {
+    "cv_auroc_mean": 1.0,
+    "cv_auroc_std": 0.0,
+    "brier_score": 0.0034,
+    "AUROC_CAVEAT": "AUROC reflects the model's ability to discriminate within literature-derived events whose labels and features co-originate from the same published narratives. This circularity inflates apparent performance. Expected prospective AUROC: 0.70\u20130.85 based on independent validation of ALP-based differentiation (Jung 2022 OR=10.6)."
+  },
+  "scoring_function_python": "\ndef score_event(imaging_change_type, therapy_class, symptomatic, new_pain_at_site,\n                healing_flag, weeks_on_therapy, alp_delta_pct, ca153_delta_pct):\n    import math\n    w = COEFFICIENTS  # load from this JSON\n    score = w['intercept']\n    for img_type in ['NEW_SCLEROTIC_BONE','SUV_INCREASE_NO_SIZE','SUB_5MM_SIZE_INCREASE',\n                     'NEW_SOFT_TISSUE_LESION','RECIST_PROGRESSION','STABLE_DISEASE']:\n        score += w['coefficients']['img_'+img_type] * (1.0 if imaging_change_type == img_type else 0.0)\n    for tx in ['CDK46','HER2','ENDOCRINE','CHEMO','IO']:\n        score += w['coefficients']['tx_'+tx] * (1.0 if therapy_class == tx else 0.0)\n    score += w['coefficients']['symptomatic'] * (1.0 if symptomatic else (0.0 if symptomatic is False else 0.5))\n    score += w['coefficients']['new_pain_at_site'] * (1.0 if new_pain_at_site else (0.0 if new_pain_at_site is False else 0.5))\n    score += w['coefficients']['healing_flag'] * (1.0 if healing_flag else 0.0)\n    score += w['coefficients']['weeks_since_therapy_start_norm'] * (weeks_on_therapy / 52.0)\n    score += w['coefficients']['alp_delta_norm'] * (alp_delta_pct / 100.0)\n    score += w['coefficients']['ca153_delta_norm'] * (ca153_delta_pct / 100.0)\n    return 1.0 / (1.0 + math.exp(-score))\n",
+  "disclaimer": "RESEARCH USE ONLY \u2014 not validated for clinical decision-making."
+}

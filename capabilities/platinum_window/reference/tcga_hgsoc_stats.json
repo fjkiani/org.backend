@@ -1,0 +1,17 @@
+{
+  "cohort": "TCGA_HGSOC_GDC_2025",
+  "n_samples": 427,
+  "description": "Pre-computed means and standard deviations from TCGA HGSOC discovery cohort (hgsoc_tcga_gdc). Used as default z-scoring reference when custom cohort is not provided.",
+  "genes": {
+    "FAP": { "mean": 708.7494, "std": 1008.941 },
+    "CXCL10": { "mean": 4898.0937, "std": 6840.7573 },
+    "CXCL9": { "mean": 2413.0749, "std": 4608.7558 },
+    "CXCL11": { "mean": 1074.6487, "std": 1563.3459 },
+    "CXCR3": { "mean": 221.4965, "std": 289.302 },
+    "ACTA2": { "mean": 5534.5246, "std": 7148.2659 },
+    "POSTN": { "mean": 5900.8361, "std": 9648.2282 },
+    "CXCL12": { "mean": 4084.7939, "std": 5373.9001 },
+    "CXCR4": { "mean": 8257.8267, "std": 6844.6447 },
+    "SLC22A1": { "mean": 0.4191, "std": 0.3649, "n_source": 113, "note": "Computed from GDC HGSOC tpm_unstranded (ENSG00000175003). Not in agentic expression subset; extracted directly from GDC cache." }
+  }
+}

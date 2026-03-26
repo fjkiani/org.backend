@@ -1,0 +1,1 @@
+# Platinum Window capability package
