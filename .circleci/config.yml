@@ -1,0 +1,42 @@
+version: 2.1
+
+# --------------------------------------------------------------------------
+# CrisPRO.org Backend Keep-Alive
+# --------------------------------------------------------------------------
+# Render spins down free tier instances after 15 minutes of inactivity.
+# This scheduled workflow pings the /health endpoint every 14 minutes
+# to guarantee zero cold-starts for clinical API queries.
+# --------------------------------------------------------------------------
+
+workflows:
+  health-ping-workflow:
+    jobs:
+      - keep-alive-ping
+    triggers:
+      - schedule:
+          # Runs at minutes 0, 14, 28, 42, and 56 of every hour
+          cron: "0,14,28,42,56 * * * *"
+          filters:
+            branches:
+              only:
+                - main
+
+jobs:
+  keep-alive-ping:
+    docker:
+      - image: cimg/base:current
+    steps:
+      - run:
+          name: "⚡ Executing Health Ping to Render Backend"
+          command: |
+             # Pinging the live Render domain every 14 minutes
+             BACKEND_URL="https://org-backend-rzlz.onrender.com/health"
+             
+             echo "Pinging $BACKEND_URL to prevent cold start..."
+             STATUS_CODE=$(curl -o /dev/null -s -w "%{http_code}\n" $BACKEND_URL)
+             
+             if [ "$STATUS_CODE" -eq 200 ]; then
+               echo "✅ Ping successful! Engine is warm."
+             else
+               echo "⚠️ Ping returned status $STATUS_CODE. Check Render logs if 5xx."
+             fi

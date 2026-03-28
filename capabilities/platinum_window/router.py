@@ -17,7 +17,7 @@ from fastapi import APIRouter, Body, Header, HTTPException, Request
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 
-from backend.config import (
+from config import (
     MODEL_VERSION,
     RUO_DISCLAIMER,
     NORMALIZATION_WARNING,

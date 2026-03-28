@@ -7,7 +7,7 @@ from enum import Enum
 from typing import Any, Dict, List, Literal, Optional
 
 from pydantic import BaseModel, Field
-from backend.config import ValidationContext
+from config import ValidationContext
 
 
 # ── Enums ────────────────────────────────────────────────────────────────────

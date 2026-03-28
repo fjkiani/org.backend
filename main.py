@@ -15,8 +15,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 
-from backend.config import MODEL_VERSION
-from backend.capabilities import discover_routers
+from config import MODEL_VERSION
+from capabilities import discover_routers
 
 # ── Logging ──────────────────────────────────────────────────────────────────
 
@@ -30,12 +30,12 @@ logger = logging.getLogger("crispro")
 async def lifespan(app: FastAPI):
     """Load all capability-specific data before serving."""
     # Platinum Window reference data
-    from backend.capabilities.platinum_window.router import load_reference
+    from capabilities.platinum_window.router import load_reference
     load_reference()
     logger.info("✅ Platinum Window reference data loaded")
 
     # Progression Arbiter model
-    from backend.capabilities.progression_arbiter.router import load_model
+    from capabilities.progression_arbiter.router import load_model
     load_model()
     logger.info("✅ Progression Arbiter model loaded")
 
@@ -66,7 +66,7 @@ app.add_middleware(
 )
 
 # Rate limiting
-from backend.capabilities.platinum_window.router import limiter
+from capabilities.platinum_window.router import limiter
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
