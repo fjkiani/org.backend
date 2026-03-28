@@ -54,7 +54,13 @@ app = FastAPI(
 # CORS — permissive for dev; restrict in production
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "http://localhost:5173",
+        "http://localhost:4173",
+        "https://crispro.org",
+        "https://www.crispro.org"
+    ],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
