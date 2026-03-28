@@ -55,8 +55,8 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_methods=["GET", "POST"],
-    allow_headers=["X-API-Key", "Content-Type"],
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Rate limiting
