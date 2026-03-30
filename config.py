@@ -11,7 +11,7 @@ from pydantic import BaseModel
 
 # ── Version ──────────────────────────────────────────────────────────────────
 
-MODEL_VERSION = "1.0.0"
+MODEL_VERSION = "1.0.1-debug"
 
 # ── Disclaimers ──────────────────────────────────────────────────────────────
 
