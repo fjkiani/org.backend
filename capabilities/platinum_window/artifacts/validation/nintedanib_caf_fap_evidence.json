@@ -1,0 +1,18 @@
+{
+  "created_at": "2026-03-13",
+  "query_paths": {
+    "path_1_clinical_pubmed_query": "\"nintedanib\" AND \"ovarian\" AND (biomarker OR FAP OR stroma OR fibroblast)",
+    "path_2_geo_arrayexpress_query": "\"nintedanib\" AND \"ovarian\" AND (fibroblast OR stroma OR CAF)",
+    "path_3_mechanism_check_pmid": "33246006"
+  },
+  "clinical_translational_data": false,
+  "in_vitro_fap_measurement": true,
+  "fap_reduction_reported": true,
+  "best_evidence_pmid": "33299131",
+  "fap_reduction_magnitude": "Dose-dependent reduction of FAP protein in TGF-β1–stimulated NIH-3T3 fibroblasts treated with nintedanib (immunoblot; multiple concentrations including 0.5–1 μM). Also reduced tumor FAP+ fibroblast burden in vivo (flow cytometry / immunoblot) in a mouse B16-F10 model.",
+  "notes": [
+    "AGO-OVAR 12 / LUME-Ovar 1 primary trial PMID 26590673: no public FAP/CAF tissue biomarker reporting located in secondary translational outputs from this query path.",
+    "PMID 33246006 (FGFR upregulation / nintedanib in ovarian cancer context): did not report FAP or CAF marker quantification in the inspected abstract/full-text checks from earlier pass.",
+    "This is strong evidence that nintedanib can suppress FAP/CAF activation biology, but it is not HGSOC patient-tissue evidence."
+  ]
+}

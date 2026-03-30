@@ -300,10 +300,8 @@ def stream_artifact(filepath: str):
     Stream raw markdown/JSON artifacts to the frontend White Box panel for Platinum Window.
     """
     current_dir = Path(__file__).resolve().parent
-    project_root = current_dir.parents[2]
-    
-    # Base publication directory where the artifacts live
-    pub_dir = project_root / "publications" / "11-artistry7-hgsoc-subgroup"
+    # Local artifacts directory within the capability folder
+    pub_dir = current_dir / "artifacts"
     
     # If filepath references the backend reference dir directly:
     if "reference" in filepath:

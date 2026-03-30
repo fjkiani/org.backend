@@ -1,0 +1,52 @@
+{
+  "run_timestamp_utc": "2026-03-13T03:53:39.995474Z",
+  "fingerprint": "FAP_z < 0 AND CXCL10_z > 0 (within-cohort z-scores)",
+  "n_total": 1236,
+  "cohorts": [
+    "GSE102073",
+    "GSE17260",
+    "GSE26712",
+    "GSE32062",
+    "GSE49997",
+    "hgsoc_tcga_gdc"
+  ],
+  "per_cohort_counts": {
+    "GSE102073": {
+      "n": 85,
+      "n_pos": 20
+    },
+    "GSE17260": {
+      "n": 110,
+      "n_pos": 25
+    },
+    "GSE26712": {
+      "n": 185,
+      "n_pos": 36
+    },
+    "GSE32062": {
+      "n": 260,
+      "n_pos": 64
+    },
+    "GSE49997": {
+      "n": 171,
+      "n_pos": 41
+    },
+    "hgsoc_tcga_gdc": {
+      "n": 427,
+      "n_pos": 82
+    }
+  },
+  "stratified_cox": {
+    "hr": 0.6768359419525426,
+    "ci95_low": 0.550829679324953,
+    "ci95_high": 0.8316670461188657,
+    "p_value": 0.00020428500379431595
+  },
+  "notes": [
+    "RUO pooled Cox model stratified by cohort (baseline hazard differs per cohort).",
+    "This is an overnight proof-of-signal regression; expand cohorts once additional phenotype tables are materialized locally."
+  ],
+  "artifacts": {
+    "pooled_table_csv": "publications/11-artistry7-hgsoc-subgroup/data/validation/cross_cohort_fingerprint_pooled.csv"
+  }
+}

@@ -1,0 +1,10 @@
+SAMPLE_ID,FAP_zscore_baseline,cycles_until_window_closes,intervention_deadline
+TCGA-13-2060-01,-0.1365,1,Cycle 1 or earlier
+TCGA-09-1667-01,-0.1217,1,Cycle 1 or earlier
+TCGA-13-0885-01,-0.5934,4,Cycle 4 or earlier
+TCGA-13-0801-01,-0.5409,4,Cycle 4 or earlier
+TCGA-09-1674-01,-0.5191,4,Cycle 4 or earlier
+TCGA-04-1542-01,-0.7005,5,Cycle 5 or earlier
+TCGA-13-0804-01,-0.6807,5,Cycle 5 or earlier
+TCGA-13-0727-01,-0.6331,5,Cycle 5 or earlier
+TCGA-04-1517-01,-0.6262,5,Cycle 5 or earlier

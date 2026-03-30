@@ -1,0 +1,13 @@
+{
+  "validation_cohort": "GSE32062",
+  "n_samples": 0,
+  "tier_counts": {},
+  "median_os_months_by_tier": {},
+  "logrank_p_value": null,
+  "validation_holds": false,
+  "thresholds_source": "hgsoc_tcga_gdc (not refit)",
+  "notes": [
+    "Stub manifest for external validation output.",
+    "Replace with publications/11-artistry7-hgsoc-subgroup/data/validation_manifest.json after running the validation script."
+  ]
+}

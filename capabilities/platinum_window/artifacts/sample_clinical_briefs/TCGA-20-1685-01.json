@@ -1,0 +1,265 @@
+{
+  "sample_id": "TCGA-20-1685-01",
+  "generated_at_utc": "2026-03-12T16:38:12.995300Z",
+  "tier": "TIER_1_TRIPLE",
+  "tier_refined": "TIER_1A_ACCESSIBLE",
+  "platinum_status": "unknown",
+  "platinum_window": false,
+  "summary": "This tumor shows a three-part vulnerability: strong M2 macrophage suppression, high mTOR output / low AMPK signaling consistent with metabolic drive, and an immune environment that is *more accessible* to T-cells than the caged subtype. Standard platinum chemotherapy does not directly address these mechanisms.",
+  "recommendation": {
+    "sequence": [
+      "Start Metformin (metabolic reset; AMPK activation / mTOR suppression).",
+      "Add Dupilumab (M2 reset).",
+      "Introduce checkpoint inhibitor after immune accessibility improves."
+    ],
+    "rationale": "Sequential metabolic + immune reset before checkpoint payload."
+  },
+  "key_scores": {
+    "SPE_COMPOSITE_SCORE": 0.7697576210857553,
+    "M2_RISK_SCORE": 1.235183338100342,
+    "METFORMIN_SCORE": 0.5779685844332321,
+    "IMMUNE_ACCESS_SCORE": 0.0625754583983383,
+    "STROMAL_ARM_SCORE": -0.1257383610741188
+  },
+  "simulation": {
+    "sample_id": "TCGA-20-1685-01",
+    "tier": "TIER_1_TRIPLE",
+    "tier_refined": "TIER_1A_ACCESSIBLE",
+    "platinum_status": "unknown",
+    "platinum_window": false,
+    "sequences_run": {
+      "METFORMIN + DUPILUMAB + CHECKPOINT_INHIBITOR": [
+        {
+          "drug": "METFORMIN",
+          "prereq_met": true,
+          "post_scores": {
+            "mTOR_score": 1.4522743243441143,
+            "AMPK_INV_SCORE": -1.6385370000973536,
+            "IGF_score": 0.973849333431742,
+            "M2_RISK_SCORE": 1.235183338100342,
+            "TCELL_GPS_SCORE": 0.0761532867879,
+            "MYELOID_FLOOD_SCORE": -0.0358678010108208,
+            "STROMAL_CAGE_SCORE": -0.0782416533175639,
+            "CAF_RISK_SCORE": -0.0967536455332475,
+            "TGFB_OUTPUT_SCORE": -0.1611641245129615,
+            "IMMUNE_ACCESS_SCORE": 0.06257545839833825
+          },
+          "universe": "A",
+          "notes": null
+        },
+        {
+          "drug": "DUPILUMAB",
+          "prereq_met": true,
+          "post_scores": {
+            "mTOR_score": 1.4522743243441143,
+            "AMPK_INV_SCORE": -1.6385370000973536,
+            "IGF_score": 0.973849333431742,
+            "M2_RISK_SCORE": 0.8351833381003421,
+            "TCELL_GPS_SCORE": 0.2761532867879,
+            "MYELOID_FLOOD_SCORE": -0.2858678010108208,
+            "STROMAL_CAGE_SCORE": -0.0782416533175639,
+            "CAF_RISK_SCORE": -0.0967536455332475,
+            "TGFB_OUTPUT_SCORE": -0.1611641245129615,
+            "IMMUNE_ACCESS_SCORE": 0.2300754583983383
+          },
+          "universe": "A",
+          "notes": null
+        },
+        {
+          "drug": "CHECKPOINT_INHIBITOR",
+          "prereq_met": false,
+          "post_scores": {
+            "mTOR_score": 1.4522743243441143,
+            "AMPK_INV_SCORE": -1.6385370000973536,
+            "IGF_score": 0.973849333431742,
+            "M2_RISK_SCORE": 0.8351833381003421,
+            "TCELL_GPS_SCORE": 0.7761532867879,
+            "MYELOID_FLOOD_SCORE": -0.2858678010108208,
+            "STROMAL_CAGE_SCORE": -0.0782416533175639,
+            "CAF_RISK_SCORE": -0.0967536455332475,
+            "TGFB_OUTPUT_SCORE": -0.1611641245129615,
+            "IMMUNE_ACCESS_SCORE": 0.4300754583983383
+          },
+          "universe": "B",
+          "notes": "Ineffective if prerequisites not met (ARTISTRY-7 control failure mode)."
+        }
+      ],
+      "METFORMIN + DUPILUMAB + NINTEDANIB + CHECKPOINT_INHIBITOR": [
+        {
+          "drug": "METFORMIN",
+          "prereq_met": true,
+          "post_scores": {
+            "mTOR_score": 1.4522743243441143,
+            "AMPK_INV_SCORE": -1.6385370000973536,
+            "IGF_score": 0.973849333431742,
+            "M2_RISK_SCORE": 1.235183338100342,
+            "TCELL_GPS_SCORE": 0.0761532867879,
+            "MYELOID_FLOOD_SCORE": -0.0358678010108208,
+            "STROMAL_CAGE_SCORE": -0.0782416533175639,
+            "CAF_RISK_SCORE": -0.0967536455332475,
+            "TGFB_OUTPUT_SCORE": -0.1611641245129615,
+            "IMMUNE_ACCESS_SCORE": 0.06257545839833825
+          },
+          "universe": "A",
+          "notes": null
+        },
+        {
+          "drug": "DUPILUMAB",
+          "prereq_met": true,
+          "post_scores": {
+            "mTOR_score": 1.4522743243441143,
+            "AMPK_INV_SCORE": -1.6385370000973536,
+            "IGF_score": 0.973849333431742,
+            "M2_RISK_SCORE": 0.8351833381003421,
+            "TCELL_GPS_SCORE": 0.2761532867879,
+            "MYELOID_FLOOD_SCORE": -0.2858678010108208,
+            "STROMAL_CAGE_SCORE": -0.0782416533175639,
+            "CAF_RISK_SCORE": -0.0967536455332475,
+            "TGFB_OUTPUT_SCORE": -0.1611641245129615,
+            "IMMUNE_ACCESS_SCORE": 0.2300754583983383
+          },
+          "universe": "A",
+          "notes": null
+        },
+        {
+          "drug": "NINTEDANIB",
+          "prereq_met": true,
+          "post_scores": {
+            "mTOR_score": 1.4522743243441143,
+            "AMPK_INV_SCORE": -1.6385370000973536,
+            "IGF_score": 0.973849333431742,
+            "M2_RISK_SCORE": 0.8351833381003421,
+            "TCELL_GPS_SCORE": 0.2761532867879,
+            "MYELOID_FLOOD_SCORE": -0.2858678010108208,
+            "STROMAL_CAGE_SCORE": -0.3282416533175639,
+            "CAF_RISK_SCORE": -0.3967536455332475,
+            "TGFB_OUTPUT_SCORE": -0.36116412451296154,
+            "IMMUNE_ACCESS_SCORE": 0.29257545839833826
+          },
+          "universe": "A",
+          "notes": null
+        },
+        {
+          "drug": "CHECKPOINT_INHIBITOR",
+          "prereq_met": false,
+          "post_scores": {
+            "mTOR_score": 1.4522743243441143,
+            "AMPK_INV_SCORE": -1.6385370000973536,
+            "IGF_score": 0.973849333431742,
+            "M2_RISK_SCORE": 0.8351833381003421,
+            "TCELL_GPS_SCORE": 0.7761532867879,
+            "MYELOID_FLOOD_SCORE": -0.2858678010108208,
+            "STROMAL_CAGE_SCORE": -0.3282416533175639,
+            "CAF_RISK_SCORE": -0.3967536455332475,
+            "TGFB_OUTPUT_SCORE": -0.36116412451296154,
+            "IMMUNE_ACCESS_SCORE": 0.4925754583983383
+          },
+          "universe": "B",
+          "notes": "Ineffective if prerequisites not met (ARTISTRY-7 control failure mode)."
+        }
+      ],
+      "CHECKPOINT_INHIBITOR": [
+        {
+          "drug": "CHECKPOINT_INHIBITOR",
+          "prereq_met": false,
+          "post_scores": {
+            "mTOR_score": 1.8022743243441144,
+            "AMPK_INV_SCORE": -1.3385370000973535,
+            "IGF_score": 1.173849333431742,
+            "M2_RISK_SCORE": 1.235183338100342,
+            "TCELL_GPS_SCORE": 0.5761532867879,
+            "MYELOID_FLOOD_SCORE": -0.0358678010108208,
+            "STROMAL_CAGE_SCORE": -0.0782416533175639,
+            "CAF_RISK_SCORE": -0.0967536455332475,
+            "TGFB_OUTPUT_SCORE": -0.1611641245129615,
+            "IMMUNE_ACCESS_SCORE": 0.2625754583983383
+          },
+          "universe": "A",
+          "notes": "Ineffective if prerequisites not met (ARTISTRY-7 control failure mode)."
+        }
+      ],
+      "DUPILUMAB + CHECKPOINT_INHIBITOR": [
+        {
+          "drug": "DUPILUMAB",
+          "prereq_met": true,
+          "post_scores": {
+            "mTOR_score": 1.8022743243441144,
+            "AMPK_INV_SCORE": -1.3385370000973535,
+            "IGF_score": 1.173849333431742,
+            "M2_RISK_SCORE": 0.8351833381003421,
+            "TCELL_GPS_SCORE": 0.2761532867879,
+            "MYELOID_FLOOD_SCORE": -0.2858678010108208,
+            "STROMAL_CAGE_SCORE": -0.0782416533175639,
+            "CAF_RISK_SCORE": -0.0967536455332475,
+            "TGFB_OUTPUT_SCORE": -0.1611641245129615,
+            "IMMUNE_ACCESS_SCORE": 0.2300754583983383
+          },
+          "universe": "A",
+          "notes": null
+        },
+        {
+          "drug": "CHECKPOINT_INHIBITOR",
+          "prereq_met": false,
+          "post_scores": {
+            "mTOR_score": 1.8022743243441144,
+            "AMPK_INV_SCORE": -1.3385370000973535,
+            "IGF_score": 1.173849333431742,
+            "M2_RISK_SCORE": 0.8351833381003421,
+            "TCELL_GPS_SCORE": 0.7761532867879,
+            "MYELOID_FLOOD_SCORE": -0.2858678010108208,
+            "STROMAL_CAGE_SCORE": -0.0782416533175639,
+            "CAF_RISK_SCORE": -0.0967536455332475,
+            "TGFB_OUTPUT_SCORE": -0.1611641245129615,
+            "IMMUNE_ACCESS_SCORE": 0.4300754583983383
+          },
+          "universe": "B",
+          "notes": "Ineffective if prerequisites not met (ARTISTRY-7 control failure mode)."
+        }
+      ],
+      "METFORMIN + CHECKPOINT_INHIBITOR": [
+        {
+          "drug": "METFORMIN",
+          "prereq_met": true,
+          "post_scores": {
+            "mTOR_score": 1.4522743243441143,
+            "AMPK_INV_SCORE": -1.6385370000973536,
+            "IGF_score": 0.973849333431742,
+            "M2_RISK_SCORE": 1.235183338100342,
+            "TCELL_GPS_SCORE": 0.0761532867879,
+            "MYELOID_FLOOD_SCORE": -0.0358678010108208,
+            "STROMAL_CAGE_SCORE": -0.0782416533175639,
+            "CAF_RISK_SCORE": -0.0967536455332475,
+            "TGFB_OUTPUT_SCORE": -0.1611641245129615,
+            "IMMUNE_ACCESS_SCORE": 0.06257545839833825
+          },
+          "universe": "A",
+          "notes": null
+        },
+        {
+          "drug": "CHECKPOINT_INHIBITOR",
+          "prereq_met": false,
+          "post_scores": {
+            "mTOR_score": 1.4522743243441143,
+            "AMPK_INV_SCORE": -1.6385370000973536,
+            "IGF_score": 0.973849333431742,
+            "M2_RISK_SCORE": 1.235183338100342,
+            "TCELL_GPS_SCORE": 0.5761532867879,
+            "MYELOID_FLOOD_SCORE": -0.0358678010108208,
+            "STROMAL_CAGE_SCORE": -0.0782416533175639,
+            "CAF_RISK_SCORE": -0.0967536455332475,
+            "TGFB_OUTPUT_SCORE": -0.1611641245129615,
+            "IMMUNE_ACCESS_SCORE": 0.2625754583983383
+          },
+          "universe": "A",
+          "notes": "Ineffective if prerequisites not met (ARTISTRY-7 control failure mode)."
+        }
+      ]
+    }
+  },
+  "evidence_citations": [
+    "PMC9899624 (AMPK activation and platinum sensitivity mechanism; referenced for hypothesis generation)."
+  ],
+  "notes": [
+    "RUO: research-only brief. Requires clinical validation; not medical advice."
+  ]
+}

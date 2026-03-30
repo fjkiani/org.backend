@@ -1,0 +1,22 @@
+{
+  "run_timestamp_utc": "2026-03-10T09:08:27.590170Z",
+  "validation_cohort": "ovarian_msk_2025",
+  "platform": "MSK-IMPACT targeted sequencing",
+  "study_available": true,
+  "all_sample_count": 1,
+  "sequenced_sample_count": 31,
+  "rna_seq_sample_count": 0,
+  "survival_attributes_exposed": [
+    "OS_MONTHS",
+    "OS_STATUS"
+  ],
+  "logrank_p_value": null,
+  "validation_holds": false,
+  "thresholds_source": "hgsoc_tcga_gdc (absolute transfer, not run)",
+  "threshold_method": "not run - no RNA-seq expression profile available",
+  "notes": [
+    "RUO metadata gate for ovarian_msk_2025.",
+    "Overall-survival attributes are exposed in cBioPortal, but the study does not provide RNA-seq expression data.",
+    "Because the ARTISTRY-7 proxy requires transcriptomic inputs, the identical score pipeline was not run on this targeted DNA cohort."
+  ]
+}

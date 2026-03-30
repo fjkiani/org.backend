@@ -1,0 +1,130 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Bone Imaging Event",
+  "description": "Schema for a single bone imaging event in the Progression Arbiter pipeline. RESEARCH USE ONLY.",
+  "type": "object",
+  "required": ["imaging_change_type"],
+  "properties": {
+    "study_id": {
+      "type": ["string", "null"],
+      "description": "Source study identifier (e.g., 'Zhang_2021', 'INSTITUTION_2026')"
+    },
+    "patient_id": {
+      "type": ["string", "null"],
+      "description": "De-identified patient identifier"
+    },
+    "imaging_modality": {
+      "type": ["string", "null"],
+      "description": "Imaging modality used (e.g., 'bone_scan', 'CT', 'PET-CT', 'MRI')"
+    },
+    "imaging_change_type": {
+      "type": "string",
+      "enum": [
+        "NEW_SCLEROTIC_BONE",
+        "SUV_INCREASE_NO_SIZE",
+        "SUB_5MM_SIZE_INCREASE",
+        "NEW_SOFT_TISSUE_LESION",
+        "RECIST_PROGRESSION",
+        "STABLE_DISEASE",
+        "OTHER_OR_UNCLEAR"
+      ],
+      "description": "Primary imaging finding classification"
+    },
+    "imaging_report_text": {
+      "type": ["string", "null"],
+      "description": "Free-text radiology report excerpt (for parser training)"
+    },
+    "therapy_class": {
+      "type": "string",
+      "enum": ["CDK46", "HER2", "ENDOCRINE", "CHEMO", "IO", "OTHER"],
+      "description": "Current systemic therapy class"
+    },
+    "event_index": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Sequential event number for this patient"
+    },
+    "weeks_since_therapy_start": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "description": "Weeks from therapy start to imaging event"
+    },
+    "symptomatic": {
+      "type": ["boolean", "null"],
+      "description": "Is the patient symptomatic at this timepoint? null = unknown"
+    },
+    "new_pain_at_site": {
+      "type": ["boolean", "null"],
+      "description": "New pain at the site of the imaging finding? null = unknown"
+    },
+    "alp_baseline": {
+      "type": ["number", "null"],
+      "description": "Alkaline phosphatase at therapy start (U/L)"
+    },
+    "alp_followup": {
+      "type": ["number", "null"],
+      "description": "Alkaline phosphatase at imaging timepoint (U/L)"
+    },
+    "alp_delta": {
+      "type": ["number", "null"],
+      "description": "ALP percent change from baseline (e.g., +5 = 5% increase)"
+    },
+    "ca153_baseline": {
+      "type": ["number", "null"],
+      "description": "CA15-3 at therapy start (U/mL)"
+    },
+    "ca153_followup": {
+      "type": ["number", "null"],
+      "description": "CA15-3 at imaging timepoint (U/mL)"
+    },
+    "ca153_delta": {
+      "type": ["number", "null"],
+      "description": "CA15-3 percent change from baseline"
+    },
+    "cea_delta": {
+      "type": ["number", "null"],
+      "description": "CEA percent change from baseline"
+    },
+    "healing_flag": {
+      "type": ["boolean", "null"],
+      "description": "Sclerotic/healing imaging language in context of stable extraosseous disease"
+    },
+    "decision": {
+      "type": ["string", "null"],
+      "enum": ["STAY", "SWITCH", null],
+      "description": "Clinician decision: STAY on current therapy or SWITCH"
+    },
+    "pfs_from_event_months": {
+      "type": ["number", "null"],
+      "description": "Progression-free survival from this event (months)"
+    },
+    "os_from_event_months": {
+      "type": ["number", "null"],
+      "description": "Overall survival from this event (months)"
+    },
+    "outcome_text": {
+      "type": ["string", "null"],
+      "description": "Narrative description of outcome"
+    },
+    "imputed": {
+      "type": "boolean",
+      "default": false,
+      "description": "Were any fields imputed/estimated rather than directly observed?"
+    },
+    "imputed_fields": {
+      "type": "array",
+      "items": {"type": "string"},
+      "default": [],
+      "description": "List of field names that were imputed"
+    },
+    "true_progression_label": {
+      "type": ["integer", "null"],
+      "enum": [0, 1, null],
+      "description": "Ground truth label: 0=pseudo-progression, 1=true progression, null=ambiguous"
+    },
+    "recist_status": {
+      "type": ["string", "null"],
+      "description": "RECIST 1.1 status if available (CR, PR, SD, PD)"
+    }
+  }
+}

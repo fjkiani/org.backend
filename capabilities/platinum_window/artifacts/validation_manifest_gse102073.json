@@ -1,0 +1,49 @@
+{
+  "run_timestamp_utc": "2026-03-10T09:07:45.735731Z",
+  "validation_cohort": "GSE102073",
+  "platform": "RNA-seq (GEO supplementary workbook)",
+  "platform_id": "GPL16791",
+  "n_samples": 85,
+  "n_samples_with_survival": 84,
+  "tier_counts": {
+    "TIER_3_NONE": 61,
+    "TIER_2_DUAL": 19,
+    "TIER_1_TRIPLE": 5
+  },
+  "tier_counts_with_survival": {
+    "TIER_3_NONE": 60,
+    "TIER_2_DUAL": 19,
+    "TIER_1_TRIPLE": 5
+  },
+  "median_os_months_by_tier": {
+    "TIER_1_TRIPLE": 46.7,
+    "TIER_2_DUAL": 35.0,
+    "TIER_3_NONE": 35.4
+  },
+  "logrank_p_value": 0.47582999073708787,
+  "validation_holds": false,
+  "thresholds_source": "hgsoc_tcga_gdc (absolute transfer, not refit)",
+  "threshold_method": "absolute transfer (RNA-seq GEO cohort)",
+  "score_thresholds": {
+    "m2_risk_q75": 0.27015367203049434,
+    "metformin_q75": 0.1457158342959351,
+    "spe_composite_p50": 0.5863124496273246,
+    "spe_composite_p75": 0.6780641936804825,
+    "m2_risk_min": -5.685405481207688,
+    "m2_risk_max": 4.071524654531012,
+    "metformin_min": -0.9094129701767772,
+    "metformin_max": 0.8821480156199859
+  },
+  "missing_panel_genes": [
+    "ACACA",
+    "CCL18",
+    "MRC1"
+  ],
+  "notes": [
+    "RUO external validation run on GSE102073.",
+    "Scores were computed with the identical discovery-era score pipeline and tiered using discovery absolute thresholds.",
+    "Sample IDs were matched by removing the HGSC_ prefix from GEO sample titles to align with workbook columns.",
+    "CCNE1_AMP and MBD4_SILENT boosts were unavailable in this expression-only cohort and were set to 0.",
+    "Panel genes not resolved from Ensembl IDs in the processed workbook: ACACA, CCL18, MRC1."
+  ]
+}

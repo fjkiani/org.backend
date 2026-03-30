@@ -1,0 +1,19 @@
+{
+  "dataset": "GSE17260",
+  "platform_id": "GPL6480",
+  "n_samples_scored": 110,
+  "n_km": 110,
+  "tier1_median_os": 29.0,
+  "tier3_median_os": 32.5,
+  "direction": "TIER1_WORSE",
+  "logrank_p_value": 0.8205332815343472,
+  "validation_holds": false,
+  "threshold_method": "within-cohort rank (platform-normalized)",
+  "treatment_era_note": "pre-immunotherapy era microarray cohort",
+  "run_timestamp_utc": "2026-03-10T09:15:44.986173Z",
+  "notes": [
+    "RUO microarray validation run.",
+    "Scores were computed identically to discovery, but tiering used within-cohort SPE percentile ranks.",
+    "Direction is interpreted as treatment-context signal rather than fixed prognostic direction alone."
+  ]
+}

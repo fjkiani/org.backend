@@ -1,0 +1,48 @@
+{
+  "matrix": {
+    "LOW": {
+      "STAY": {
+        "n": 147,
+        "median_pfs_months": 15.1
+      },
+      "SWITCH": {
+        "n": 1,
+        "median_pfs_months": 15.0
+      }
+    },
+    "MID": {
+      "STAY": {
+        "n": 0,
+        "median_pfs_months": null
+      },
+      "SWITCH": {
+        "n": 0,
+        "median_pfs_months": null
+      }
+    },
+    "HIGH": {
+      "STAY": {
+        "n": 0,
+        "median_pfs_months": null
+      },
+      "SWITCH": {
+        "n": 91,
+        "median_pfs_months": 2.2
+      }
+    }
+  },
+  "summary_stats": {
+    "low_risk_total": 148,
+    "low_risk_switched": 1,
+    "low_risk_switched_pct": 0.7,
+    "high_risk_total": 91,
+    "high_risk_not_switched": 0,
+    "high_risk_not_switched_pct": 0.0
+  },
+  "key_findings": [
+    "Among events the model classifies as likely pseudo-progression (p_true < 0.3), 0.7% (1/148) were followed by an immediate therapy switch.",
+    "Low-risk STAY group: median PFS = 15.1 months (n=58).",
+    "Low-risk SWITCH group: median PFS = 15.0 months (n=1).",
+    "High-risk SWITCH group: median PFS = 2.2 months (n=20)."
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "n_platinum_window_patients": 9,
+  "n_confirmed_label_match": 9,
+  "n_uncertain_label_match": 0,
+  "uncertain_definition": "tcga_sample_id is null in tcga_ov_platinum_response_labels.json (not matched to Zo sample IDs)",
+  "p_sensitive_among_uncertain_platinum_window": null,
+  "platinum_window_patients_table": [
+    {
+      "SAMPLE_ID": "TCGA-04-1517-01",
+      "tcga_patient_id": "TCGA-04-1517",
+      "platinum_response": "sensitive",
+      "label_source": "GDC_XML",
+      "label_method": "GDC clinical XML field: 98fb52b4-5227-4988-ab96-aa1bec4142c8",
+      "label_source_reference": "GDC clinical XML supplements (TCGA OV cases) via GDC API download (RUO parsing)",
+      "tcga_sample_id": "TCGA-04-1517-01",
+      "has_tcga_sample_id": true
+    },
+    {
+      "SAMPLE_ID": "TCGA-04-1542-01",
+      "tcga_patient_id": "TCGA-04-1542",
+      "platinum_response": "sensitive",
+      "label_source": "GDC_XML",
+      "label_method": "GDC clinical XML field: 2bb79bd4-8580-44a0-ba42-8b991969fae9",
+      "label_source_reference": "GDC clinical XML supplements (TCGA OV cases) via GDC API download (RUO parsing)",
+      "tcga_sample_id": "TCGA-04-1542-01",
+      "has_tcga_sample_id": true
+    },
+    {
+      "SAMPLE_ID": "TCGA-09-1667-01",
+      "tcga_patient_id": "TCGA-09-1667",
+      "platinum_response": "sensitive",
+      "label_source": "GDC_XML",
+      "label_method": "GDC clinical XML field: 5a276b68-5715-40a2-9899-73fa8f542bb2",
+      "label_source_reference": "GDC clinical XML supplements (TCGA OV cases) via GDC API download (RUO parsing)",
+      "tcga_sample_id": "TCGA-09-1667-01",
+      "has_tcga_sample_id": true
+    },
+    {
+      "SAMPLE_ID": "TCGA-09-1674-01",
+      "tcga_patient_id": "TCGA-09-1674",
+      "platinum_response": "sensitive",
+      "label_source": "GDC_XML",
+      "label_method": "GDC clinical XML field: 6a6df5ea-6a01-44fb-ad80-550ada5aa3d5",
+      "label_source_reference": "GDC clinical XML supplements (TCGA OV cases) via GDC API download (RUO parsing)",
+      "tcga_sample_id": "TCGA-09-1674-01",
+      "has_tcga_sample_id": true
+    },
+    {
+      "SAMPLE_ID": "TCGA-13-0727-01",
+      "tcga_patient_id": "TCGA-13-0727",
+      "platinum_response": "sensitive",
+      "label_source": "GDC_XML",
+      "label_method": "GDC clinical XML field: 0cc8a6ff-31e2-4caf-84b0-7bd501a23326",
+      "label_source_reference": "GDC clinical XML supplements (TCGA OV cases) via GDC API download (RUO parsing)",
+      "tcga_sample_id": "TCGA-13-0727-01",
+      "has_tcga_sample_id": true
+    },
+    {
+      "SAMPLE_ID": "TCGA-13-0801-01",
+      "tcga_patient_id": "TCGA-13-0801",
+      "platinum_response": "sensitive",
+      "label_source": "GDC_XML",
+      "label_method": "GDC clinical XML field: c1fef047-a7a3-4dc5-9bed-384ed13cc4eb",
+      "label_source_reference": "GDC clinical XML supplements (TCGA OV cases) via GDC API download (RUO parsing)",
+      "tcga_sample_id": "TCGA-13-0801-01",
+      "has_tcga_sample_id": true
+    },
+    {
+      "SAMPLE_ID": "TCGA-13-0804-01",
+      "tcga_patient_id": "TCGA-13-0804",
+      "platinum_response": "sensitive",
+      "label_source": "GDC_XML",
+      "label_method": "GDC clinical XML field: 69b90a6e-0bc5-4cc1-adad-87c291147701",
+      "label_source_reference": "GDC clinical XML supplements (TCGA OV cases) via GDC API download (RUO parsing)",
+      "tcga_sample_id": "TCGA-13-0804-01",
+      "has_tcga_sample_id": true
+    },
+    {
+      "SAMPLE_ID": "TCGA-13-0885-01",
+      "tcga_patient_id": "TCGA-13-0885",
+      "platinum_response": "sensitive",
+      "label_source": "GDC_XML",
+      "label_method": "GDC clinical XML field: 1ed15599-95f1-4d4d-9316-6b75290c8763",
+      "label_source_reference": "GDC clinical XML supplements (TCGA OV cases) via GDC API download (RUO parsing)",
+      "tcga_sample_id": "TCGA-13-0885-01",
+      "has_tcga_sample_id": true
+    },
+    {
+      "SAMPLE_ID": "TCGA-13-2060-01",
+      "tcga_patient_id": "TCGA-13-2060",
+      "platinum_response": "sensitive",
+      "label_source": "GDC_XML",
+      "label_method": "GDC clinical XML field: b8737edb-0191-4a94-84ba-34984cdee512",
+      "label_source_reference": "GDC clinical XML supplements (TCGA OV cases) via GDC API download (RUO parsing)",
+      "tcga_sample_id": "TCGA-13-2060-01",
+      "has_tcga_sample_id": true
+    }
+  ],
+  "km_confirmed_only": {
+    "km_median": 84.13272010512483,
+    "km_ci_lower": 15.177398160315374,
+    "km_ci_upper": null,
+    "n": 9,
+    "events": 5
+  }
+}

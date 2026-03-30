@@ -1,0 +1,32 @@
+{
+  "sample_id": "TCGA-29-1695-01",
+  "generated_at_utc": "2026-03-13T06:14:47.570648Z",
+  "tier": "TIER_1_TRIPLE",
+  "tier_refined": "TIER_1B_CAGED",
+  "platinum_status": "unknown",
+  "platinum_window": false,
+  "summary": "This tumor shows the same M2 + metabolic vulnerability as Tier 1A, but with a stronger stromal exclusion signal (CAF/TGF-\u03b2/CXCL12 axis). In this setting, checkpoint therapy alone is unlikely to penetrate without a stromal unlock step.",
+  "recommendation": {
+    "sequence": [
+      "Start Metformin.",
+      "Add Dupilumab.",
+      "Add stromal unlock (e.g., anti-fibrotic / CXCR4/TGF-\u03b2 axis disruption; see stromal arm score).",
+      "Introduce checkpoint inhibitor after stromal barrier reduces."
+    ],
+    "rationale": "Stromal exclusion must be reduced before immune activation can access tumor."
+  },
+  "key_scores": {
+    "SPE_COMPOSITE_SCORE": 0.8178519000369029,
+    "M2_RISK_SCORE": 1.323803611164979,
+    "METFORMIN_SCORE": 0.0173994624641001,
+    "IMMUNE_ACCESS_SCORE": -0.5367703819354706,
+    "STROMAL_ARM_SCORE": 0.9241500765020084
+  },
+  "simulation": null,
+  "evidence_citations": [
+    "PMC9899624 (AMPK activation and platinum sensitivity mechanism; referenced for hypothesis generation)."
+  ],
+  "notes": [
+    "RUO: research-only brief. Requires clinical validation; not medical advice."
+  ]
+}

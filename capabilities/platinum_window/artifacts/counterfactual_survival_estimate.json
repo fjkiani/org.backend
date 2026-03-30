@@ -1,0 +1,63 @@
+{
+  "run_timestamp_utc": "2026-03-13T00:33:51.237565Z",
+  "input_csv": "data/artistry7_proxy/crispro_lazarus_output.csv",
+  "tau_months": 36.0,
+  "bootstrap": {
+    "n_boot": 2000,
+    "seed": 42,
+    "ci": "percentile_2.5_97.5"
+  },
+  "groups": {
+    "window_group": {
+      "name": "platinum_window",
+      "n": 9,
+      "rmst_36": 31.30009855453351,
+      "rmst_36_ci95": [
+        24.784494086727992,
+        36.0
+      ]
+    },
+    "tightened_group": {
+      "name": "tightened_criterion",
+      "n": 7,
+      "rmst_36": 30.62868406232401,
+      "rmst_36_ci95": [
+        24.67936925098555,
+        35.8928102121269
+      ]
+    },
+    "control_group": {
+      "name": "tier1_nonwindow_control",
+      "n": 98,
+      "rmst_36": 27.202445913108342,
+      "rmst_36_ci95": [
+        24.769563433494113,
+        29.379139775854913
+      ]
+    }
+  },
+  "comparisons": {
+    "window_vs_control": {
+      "name": "window_vs_control",
+      "rmst_diff": 4.097652641425167,
+      "rmst_diff_ci95": [
+        -2.4632270871913615,
+        9.736608582859912
+      ],
+      "lives_saved_per_100": 11
+    },
+    "tightened_vs_control": {
+      "name": "tightened_vs_control",
+      "rmst_diff": 3.426238149215667,
+      "rmst_diff_ci95": [
+        -3.4751182074359552,
+        9.627581262487812
+      ],
+      "lives_saved_per_100": 9
+    }
+  },
+  "methodology": "RMST difference at 36-month horizon",
+  "caveat": "Observational data only. Not a randomized controlled trial. 'Lives saved' is a computational estimate under the assumption that the survival difference is attributable to biology, not treatment. Requires prospective validation.",
+  "n_window": 9,
+  "stat_power": "Underpowered at n=9. Confidence intervals will be wide."
+}

@@ -1,0 +1,51 @@
+{
+  "run_timestamp_utc": "2026-03-13T03:08:58.063801Z",
+  "input_json": "publications/11-artistry7-hgsoc-subgroup/data/counterfactual_survival_estimate.json",
+  "comparison_used": "tightened_vs_control",
+  "methodology": "Normal-approx sample size on RMST@tau as continuous outcome; sigma back-calculated from observed CI.",
+  "caveat": "Approximate planning calculation only. Uses CI-derived variance from observational data with unequal group sizes (n1=7, n0=98). True variance in a randomized Phase II trial may differ due to censoring and enrollment effects.",
+  "observed": {
+    "tau_months": 36.0,
+    "delta_rmst_months": 3.426238149215667,
+    "diff_ci95": [
+      -3.4751182074359552,
+      9.627581262487812
+    ],
+    "se_diff_approx": 3.342525374980553,
+    "sigma_rmst_months_approx": 8.543623885581226,
+    "note": "CI crosses zero \u2192 effect size uncertainty is substantial; plan for underpower risk."
+  },
+  "alpha_two_sided": 0.05,
+  "power_targets": {
+    "0.8": {
+      "comparison": "tightened_vs_control",
+      "tau_months": 36.0,
+      "delta_rmst_months": 3.426238149215667,
+      "diff_ci95": [
+        -3.4751182074359552,
+        9.627581262487812
+      ],
+      "se_diff_approx": 3.342525374980553,
+      "sigma_rmst_months_approx": 8.543623885581226,
+      "alpha_two_sided": 0.05,
+      "power_target": 0.8,
+      "required_n_per_arm": 98,
+      "required_total_n": 196
+    },
+    "0.9": {
+      "comparison": "tightened_vs_control",
+      "tau_months": 36.0,
+      "delta_rmst_months": 3.426238149215667,
+      "diff_ci95": [
+        -3.4751182074359552,
+        9.627581262487812
+      ],
+      "se_diff_approx": 3.342525374980553,
+      "sigma_rmst_months_approx": 8.543623885581226,
+      "alpha_two_sided": 0.05,
+      "power_target": 0.9,
+      "required_n_per_arm": 131,
+      "required_total_n": 262
+    }
+  }
+}

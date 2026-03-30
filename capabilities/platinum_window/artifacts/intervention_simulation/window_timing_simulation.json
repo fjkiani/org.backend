@@ -1,0 +1,56 @@
+[
+  {
+    "SAMPLE_ID": "TCGA-04-1517-01",
+    "FAP_zscore_baseline": -0.6262,
+    "cycles_until_window_closes": 5,
+    "intervention_deadline": "Cycle 5 or earlier"
+  },
+  {
+    "SAMPLE_ID": "TCGA-04-1542-01",
+    "FAP_zscore_baseline": -0.7005,
+    "cycles_until_window_closes": 5,
+    "intervention_deadline": "Cycle 5 or earlier"
+  },
+  {
+    "SAMPLE_ID": "TCGA-09-1667-01",
+    "FAP_zscore_baseline": -0.1217,
+    "cycles_until_window_closes": 1,
+    "intervention_deadline": "Cycle 1 or earlier"
+  },
+  {
+    "SAMPLE_ID": "TCGA-09-1674-01",
+    "FAP_zscore_baseline": -0.5191,
+    "cycles_until_window_closes": 4,
+    "intervention_deadline": "Cycle 4 or earlier"
+  },
+  {
+    "SAMPLE_ID": "TCGA-13-0727-01",
+    "FAP_zscore_baseline": -0.6331,
+    "cycles_until_window_closes": 5,
+    "intervention_deadline": "Cycle 5 or earlier"
+  },
+  {
+    "SAMPLE_ID": "TCGA-13-0801-01",
+    "FAP_zscore_baseline": -0.5409,
+    "cycles_until_window_closes": 4,
+    "intervention_deadline": "Cycle 4 or earlier"
+  },
+  {
+    "SAMPLE_ID": "TCGA-13-0804-01",
+    "FAP_zscore_baseline": -0.6807,
+    "cycles_until_window_closes": 5,
+    "intervention_deadline": "Cycle 5 or earlier"
+  },
+  {
+    "SAMPLE_ID": "TCGA-13-0885-01",
+    "FAP_zscore_baseline": -0.5934,
+    "cycles_until_window_closes": 4,
+    "intervention_deadline": "Cycle 4 or earlier"
+  },
+  {
+    "SAMPLE_ID": "TCGA-13-2060-01",
+    "FAP_zscore_baseline": -0.1365,
+    "cycles_until_window_closes": 1,
+    "intervention_deadline": "Cycle 1 or earlier"
+  }
+]

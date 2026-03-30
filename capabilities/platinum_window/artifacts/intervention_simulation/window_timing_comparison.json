@@ -1,0 +1,77 @@
+{
+  "scenario_A_median_cycles": 3.0,
+  "patients_closed_at_baseline": 40,
+  "patients_open_at_baseline": 67,
+  "patients_still_open_after_6_cycles_scenario_A": 0,
+  "transport_gate": {
+    "enabled": true,
+    "definition": "transport_effective_proxy = 1 if TRANSPORT_POS_SCORE > 0 else 0 (if available); otherwise 1 for all",
+    "n_transport_effective_proxy_1": 57,
+    "n_transport_effective_proxy_0": 50
+  },
+  "metformin_suppression_sweep": {
+    "0.2": {
+      "ungated": {
+        "scenario_B_median_cycles": 4.0,
+        "cycles_gained_median": 1.0,
+        "patients_whose_window_never_closes_within_10": 0,
+        "patients_moving_from_0_cycles_to_viable": 0,
+        "patients_still_open_after_6_cycles_scenario_B": 0
+      },
+      "transport_gated": {
+        "scenario_B_median_cycles": 4.0,
+        "cycles_gained_median": 0.0,
+        "patients_whose_window_never_closes_within_10": 0,
+        "patients_moving_from_0_cycles_to_viable": 0,
+        "patients_still_open_after_6_cycles_scenario_B": 0
+      }
+    },
+    "0.4": {
+      "ungated": {
+        "scenario_B_median_cycles": 5.0,
+        "cycles_gained_median": 2.0,
+        "patients_whose_window_never_closes_within_10": 0,
+        "patients_moving_from_0_cycles_to_viable": 0,
+        "patients_still_open_after_6_cycles_scenario_B": 30
+      },
+      "transport_gated": {
+        "scenario_B_median_cycles": 4.0,
+        "cycles_gained_median": 0.0,
+        "patients_whose_window_never_closes_within_10": 0,
+        "patients_moving_from_0_cycles_to_viable": 0,
+        "patients_still_open_after_6_cycles_scenario_B": 10
+      }
+    },
+    "0.6": {
+      "ungated": {
+        "scenario_B_median_cycles": 7.0,
+        "cycles_gained_median": 4.0,
+        "patients_whose_window_never_closes_within_10": 30,
+        "patients_moving_from_0_cycles_to_viable": 0,
+        "patients_still_open_after_6_cycles_scenario_B": 57
+      },
+      "transport_gated": {
+        "scenario_B_median_cycles": 4.0,
+        "cycles_gained_median": 0.0,
+        "patients_whose_window_never_closes_within_10": 10,
+        "patients_moving_from_0_cycles_to_viable": 0,
+        "patients_still_open_after_6_cycles_scenario_B": 25
+      }
+    }
+  },
+  "params": {
+    "CAF2_FAP_DELTA_PER_CYCLE": 0.18,
+    "CAF3_FAP_DELTA_PER_CYCLE": 0.119,
+    "CAF2_WEIGHT": 0.6,
+    "CAF3_WEIGHT": 0.4,
+    "WINDOW_CLOSE_THRESHOLD": 0.0,
+    "max_cycles": 10,
+    "standard_of_care_cycles": 6,
+    "METFORMIN_FAP_SUPPRESSION_SWEEP": [
+      0.2,
+      0.4,
+      0.6
+    ],
+    "note": "Suppression sweep is hypothesis-generating; transport gating uses TRANSPORT_POS_SCORE proxy when available (RUO)."
+  }
+}

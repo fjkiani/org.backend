@@ -1,0 +1,15 @@
+{
+  "tcgaovarian_fp_n_patients": 171,
+  "tcgaovarian_fp_diabetes_n": 0,
+  "tcgaovarian_fp_non_diabetes_n": 171,
+  "median_os_months_diabetes": null,
+  "median_os_months_non_diabetes": 33.6427104722793,
+  "logrank_p_diabetes_vs_non": null,
+  "metformin_mentions_in_fp_diabetics": 0,
+  "missing_clinical_xml_for_fp_patients": 0,
+  "missing_clinical_xml_example_barcodes": [],
+  "notes": [
+    "Diabetes/metformin extraction is heuristic over TCGA BCR clinical XML text (RUO).",
+    "If diabetes/metformin capture is sparse, we can expand XML parsing rules after inspecting evidence snippets."
+  ]
+}

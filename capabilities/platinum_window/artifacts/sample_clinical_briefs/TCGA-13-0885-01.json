@@ -1,0 +1,32 @@
+{
+  "sample_id": "TCGA-13-0885-01",
+  "generated_at_utc": "2026-03-13T06:14:47.570484Z",
+  "tier": "TIER_1_TRIPLE",
+  "tier_refined": "TIER_1A_ACCESSIBLE",
+  "platinum_status": "sensitive",
+  "platinum_window": true,
+  "summary": "URGENT \u2014 PLATINUM WINDOW OPEN.\nThis patient carries TIER_1 biology (M2-dominated, mTOR-hyperactive) and is currently platinum-sensitive.\nThis is a time-sensitive intervention moment in HGSOC (RUO).\nInternal cohort data: PLATINUM_WINDOW KM median OS \u2248 84.13 months (n=9, events=5) (95% CI lower bound 15.18; upper not estimable). Reference: TIER_1_TRIPLE raw median OS \u2248 25.0 months.\nThe window closes as stromal exclusion rises and/or platinum resistance emerges.\nRecommended sequencing (hypothesis-generating): initiate Metformin now,\nadd Dupilumab at Week 2,\ncoordinate platinum rechallenge and consider checkpoint only after immune accessibility improves.\nDo not treat this as clinical instruction; prospective validation required.",
+  "recommendation": {
+    "sequence": [
+      "Start Metformin (metabolic reset; AMPK activation / mTOR suppression).",
+      "Add Dupilumab (IL-4/IL-13 axis blockade; M2 reset).",
+      "Platinum rechallenge *within metformin window* (mechanistic rationale: PMC9899624).",
+      "Introduce checkpoint inhibitor after immune accessibility improves."
+    ],
+    "rationale": "Exploit the platinum-sensitive window while executing metabolic + M2 reset."
+  },
+  "key_scores": {
+    "SPE_COMPOSITE_SCORE": 0.7557406275541533,
+    "M2_RISK_SCORE": -0.3575380291454378,
+    "METFORMIN_SCORE": -0.2547381723497544,
+    "IMMUNE_ACCESS_SCORE": 0.4538789844122814,
+    "STROMAL_ARM_SCORE": -0.6150615710504133
+  },
+  "simulation": null,
+  "evidence_citations": [
+    "PMC9899624 (AMPK activation and platinum sensitivity mechanism; referenced for hypothesis generation)."
+  ],
+  "notes": [
+    "RUO: research-only brief. Requires clinical validation; not medical advice."
+  ]
+}

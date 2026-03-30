@@ -1,0 +1,61 @@
+{
+  "results": [
+    {
+      "cancer": "brca",
+      "study_id": "brca_tcga_pan_can_atlas_2018",
+      "molecular_profile_id": "brca_tcga_pan_can_atlas_2018_rna_seq_v2_mrna",
+      "n_patients": 1082,
+      "n_fp_pos": 160,
+      "hr": 0.7557470003837705,
+      "ci95_lower": 0.480456339320769,
+      "ci95_upper": 1.1887730098358535,
+      "p": 0.2256094198544874,
+      "patient_level_csv": "publications/11-artistry7-hgsoc-subgroup/data/validation/pan_cancer_brca_brca_tcga_pan_can_atlas_2018_patient_level.csv",
+      "os_time_attr": "OS_MONTHS",
+      "os_status_attr": "OS_STATUS"
+    },
+    {
+      "cancer": "luad",
+      "study_id": "luad_tcga_pan_can_atlas_2018",
+      "molecular_profile_id": "luad_tcga_pan_can_atlas_2018_rna_seq_v2_mrna",
+      "n_patients": 501,
+      "n_fp_pos": 74,
+      "hr": 1.0667357419125671,
+      "ci95_lower": 0.7034194083585769,
+      "ci95_upper": 1.617705069766405,
+      "p": 0.7610676941631044,
+      "patient_level_csv": "publications/11-artistry7-hgsoc-subgroup/data/validation/pan_cancer_luad_luad_tcga_pan_can_atlas_2018_patient_level.csv",
+      "os_time_attr": "OS_MONTHS",
+      "os_status_attr": "OS_STATUS"
+    },
+    {
+      "cancer": "paad",
+      "study_id": "paad_tcga_pan_can_atlas_2018",
+      "molecular_profile_id": "paad_tcga_pan_can_atlas_2018_rna_seq_v2_mrna",
+      "n_patients": 177,
+      "n_fp_pos": 21,
+      "hr": 1.8140607362567625,
+      "ci95_lower": 1.0003662908898818,
+      "ci95_upper": 3.289611400141304,
+      "p": 0.049859202415832596,
+      "patient_level_csv": "publications/11-artistry7-hgsoc-subgroup/data/validation/pan_cancer_paad_paad_tcga_pan_can_atlas_2018_patient_level.csv",
+      "os_time_attr": "OS_MONTHS",
+      "os_status_attr": "OS_STATUS"
+    },
+    {
+      "cancer": "stad",
+      "study_id": "stad_tcga_pan_can_atlas_2018",
+      "molecular_profile_id": "stad_tcga_pan_can_atlas_2018_rna_seq_v2_mrna",
+      "n_patients": 370,
+      "n_fp_pos": 47,
+      "hr": 0.5529588329361272,
+      "ci95_lower": 0.3120830151671583,
+      "ci95_upper": 0.9797504383835514,
+      "p": 0.04235047079660019,
+      "patient_level_csv": "publications/11-artistry7-hgsoc-subgroup/data/validation/pan_cancer_stad_stad_tcga_pan_can_atlas_2018_patient_level.csv",
+      "os_time_attr": "OS_MONTHS",
+      "os_status_attr": "OS_STATUS"
+    }
+  ],
+  "errors": {}
+}

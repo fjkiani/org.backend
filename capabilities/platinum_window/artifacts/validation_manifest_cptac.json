@@ -1,0 +1,34 @@
+{
+  "run_timestamp_utc": "2026-03-10T08:58:03.396438Z",
+  "validation_cohort": "ovary_cptac_gdc",
+  "platform": "RNA-seq (cBioPortal direct)",
+  "n_samples": 101,
+  "n_samples_with_survival": 0,
+  "tier_counts": {
+    "TIER_3_NONE": 72,
+    "TIER_2_DUAL": 24,
+    "TIER_1_TRIPLE": 5
+  },
+  "tier_counts_with_survival": {},
+  "median_os_months_by_tier": {},
+  "logrank_p_value": null,
+  "validation_holds": false,
+  "thresholds_source": "hgsoc_tcga_gdc (absolute transfer, not refit)",
+  "threshold_method": "absolute transfer (platform-matched RNA-seq)",
+  "score_thresholds": {
+    "m2_risk_q75": 0.27015367203049434,
+    "metformin_q75": 0.1457158342959351,
+    "spe_composite_p50": 0.5863124496273246,
+    "spe_composite_p75": 0.6780641936804825,
+    "m2_risk_min": -5.685405481207688,
+    "m2_risk_max": 4.071524654531012,
+    "metformin_min": -0.9094129701767772,
+    "metformin_max": 0.8821480156199859
+  },
+  "notes": [
+    "RUO platform-matched validation run using cBioPortal ovary_cptac_gdc expression.",
+    "Scores were computed identically to discovery and tiered using discovery absolute thresholds.",
+    "CCNE1_AMP and MBD4_SILENT boosts were unavailable in this expression-only pass and set to 0.",
+    "cBioPortal/GDC survival-time fields were not exposed for this study, so KM/log-rank could only run when OS months were present."
+  ]
+}
