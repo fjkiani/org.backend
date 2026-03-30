@@ -78,6 +78,35 @@ for router in discover_routers():
     logger.info(f"  → Registered: {router.prefix}")
 
 
+# ── Debug Diagnostic ─────────────────────────────────────────────────────────
+
+@app.get("/debug/artifacts")
+def debug_artifacts():
+    import os
+    from pathlib import Path
+    
+    current_dir = Path(__file__).resolve().parent
+    results = {}
+    
+    # Check Platinum Window
+    pw_path = current_dir / "capabilities" / "platinum_window" / "artifacts"
+    results["platinum_window"] = {
+        "exists": pw_path.exists(),
+        "abs_path": str(pw_path),
+        "files": [str(p.relative_to(pw_path)) for p in pw_path.rglob("*") if p.is_file()] if pw_path.exists() else []
+    }
+    
+    # Check Progression Arbiter
+    pa_path = current_dir / "capabilities" / "progression_arbiter" / "artifacts"
+    results["progression_arbiter"] = {
+        "exists": pa_path.exists(),
+        "abs_path": str(pa_path),
+        "files": [str(p.relative_to(pa_path)) for p in pa_path.rglob("*") if p.is_file()] if pa_path.exists() else []
+    }
+    
+    return results
+
+
 # ── Health ───────────────────────────────────────────────────────────────────
 
 @app.get("/health")
