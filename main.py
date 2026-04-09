@@ -1,7 +1,7 @@
 """
 CrisPRO.org — Thin FastAPI Backend.
 
-Auto-discovers capability routers from backend/capabilities/.
+Auto-discovers capability routers from capabilities/.
 To add a new capability: create capabilities/my_thing/router.py with
   router = APIRouter(prefix="/api/v1/my-thing")
 Restart — it's wired in.
@@ -9,6 +9,14 @@ Restart — it's wired in.
 
 import logging
 from contextlib import asynccontextmanager
+from pathlib import Path
+
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv(Path(__file__).resolve().parent / ".env")
+except ImportError:
+    pass
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -51,14 +59,14 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# CORS — permissive for dev; restrict in production
+# CORS — production origins + local dev
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
         "http://localhost:4173",
         "https://crispro.org",
-        "https://www.crispro.org"
+        "https://www.crispro.org",
     ],
     allow_credentials=True,
     allow_methods=["*"],
