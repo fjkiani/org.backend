@@ -93,6 +93,11 @@ class PlatinumWindowRequest(BaseModel):
     custom_cohort_means: Optional[Dict[str, float]] = None
     custom_cohort_stds: Optional[Dict[str, float]] = None
 
+    # Normalization state of the input. Only "quantile_to_reference" unlocks a
+    # thresholded predictive platinum-response CALL (the frozen threshold does not
+    # transfer to arbitrary normalizations). Default "raw" -> probability/ranking only.
+    normalization: Literal["raw", "quantile_to_reference"] = "raw"
+
 
 # ── Response sub-models ──────────────────────────────────────────────────────
 
@@ -124,6 +129,19 @@ class PlatinumWindowResponse(BaseModel):
     # Tier
     TIER: Tier
     TIER_REFINED: Optional[TierRefined] = None
+    # CA-3: tiers did not replicate externally — flagged discovery-only.
+    tier_discovery_only: bool = True
+    tier_validation_note: Optional[str] = None
+
+    # PREDICTIVE platinum-response axis (CXCL12/POSTN) — distinct from prognostic PLATINUM_SCORE.
+    # Verdict INCONCLUSIVE; thresholded call suppressed unless input is calibrated.
+    PLATINUM_RESPONSE_SCORE: Optional[float] = None
+    platinum_response_verdict: str = "INCONCLUSIVE"
+    platinum_response_call: Optional[str] = None
+    platinum_response_calibration_required: bool = True
+    platinum_response_calibrated: bool = False
+    platinum_response_axis_note: Optional[str] = None
+    platinum_response_model: Optional[Dict[str, Any]] = None
 
     # PLATINUM_SCORE — continuous elastic net Cox
     PLATINUM_SCORE: float
@@ -170,3 +188,6 @@ class PlatinumWindowResponse(BaseModel):
     reference_cohort: str
     computation_ms: float
     timestamp_utc: str
+
+    # Provenance & reproducibility (git SHA + model/artifact fingerprints)
+    provenance: Optional[Dict[str, Any]] = None

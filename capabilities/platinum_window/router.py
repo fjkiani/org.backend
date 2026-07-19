@@ -33,6 +33,7 @@ from .models import (
 from .scorer import compute_all_scores
 from .sequence_engine import build_treatment_sequence, compute_confidence, determine_urgency
 from .window_timer import compute_timing
+from .provenance import build_provenance
 
 # ── Reference data ───────────────────────────────────────────────────────────
 
@@ -87,6 +88,15 @@ def _build_response(
         metformin_caveat=scores["metformin_caveat"],
         TIER=scores["TIER"],
         TIER_REFINED=scores["TIER_REFINED"],
+        tier_discovery_only=scores.get("tier_discovery_only", True),
+        tier_validation_note=scores.get("tier_validation_note"),
+        PLATINUM_RESPONSE_SCORE=scores.get("PLATINUM_RESPONSE_SCORE"),
+        platinum_response_verdict=scores.get("platinum_response_verdict", "INCONCLUSIVE"),
+        platinum_response_call=scores.get("platinum_response_call"),
+        platinum_response_calibration_required=scores.get("platinum_response_calibration_required", True),
+        platinum_response_calibrated=scores.get("platinum_response_calibrated", False),
+        platinum_response_axis_note=scores.get("platinum_response_axis_note"),
+        platinum_response_model=scores.get("platinum_response_model"),
         PLATINUM_SCORE=scores["PLATINUM_SCORE"],
         PLATINUM_SCORE_percentile=scores["PLATINUM_SCORE_percentile"],
         PLATINUM_SCORE_percentile_reference=scores["PLATINUM_SCORE_percentile_reference"],
@@ -115,6 +125,7 @@ def _build_response(
         reference_cohort=ref_cohort_name,
         computation_ms=computation_ms,
         timestamp_utc=datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        provenance=build_provenance(MODEL_VERSION),
     )
 
     if resp.assay_warning:
@@ -217,7 +228,10 @@ def score_platinum_window(
         "CXCR4": payload.CXCR4, "SLC22A1": payload.SLC22A1,
     }
 
-    scores = compute_all_scores(gene_values, ref_means, ref_stds)
+    try:
+        scores = compute_all_scores(gene_values, ref_means, ref_stds, normalization=payload.normalization)
+    except ValueError as e:
+        raise HTTPException(status_code=422, detail=str(e))
 
     timing = compute_timing(
         fap_z=scores["FAP_zscore"],
@@ -277,13 +291,16 @@ def score_platinum_window(
         missing_cxcl10=scores.get("missing_cxcl10", False),
     )
 
-    # Audit log
+    # Audit log — includes model_version + provenance git SHA; NO gene values / PHI logged.
     logger.info(json.dumps({
         "timestamp": resp.timestamp_utc,
         "api_key_hash": hash_api_key(x_api_key),
+        "model_version": resp.model_version,
+        "git_sha": (resp.provenance or {}).get("git_sha"),
         "urgency": resp.urgency,
         "risk_tier": resp.risk_tier,
         "PLATINUM_SCORE": resp.PLATINUM_SCORE,
+        "platinum_response_verdict": resp.platinum_response_verdict,
         "computation_ms": resp.computation_ms,
     }))
 

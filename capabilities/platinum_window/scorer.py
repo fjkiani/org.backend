@@ -14,6 +14,35 @@ CrisPRO PLATINUM_WINDOW v1.0 — Research Use Only.
 
 from typing import Dict, Optional, Tuple
 
+from .predictive_axis import compute_platinum_response_score
+
+
+import math
+
+
+def _validate_gene_values(gene_values: Dict[str, Optional[float]]) -> None:
+    """Reject NaN/inf/negative expression before scoring (fail loud, not silent).
+
+    Raises ValueError with a structured message. None is allowed (means 'not measured').
+    """
+    bad = []
+    for gene, val in gene_values.items():
+        if val is None:
+            continue
+        try:
+            f = float(val)
+        except (TypeError, ValueError):
+            bad.append(f"{gene}={val!r} (not numeric)")
+            continue
+        if math.isnan(f):
+            bad.append(f"{gene}=NaN")
+        elif math.isinf(f):
+            bad.append(f"{gene}=inf")
+        elif f < 0.0:
+            bad.append(f"{gene}={f} (negative expression is invalid)")
+    if bad:
+        raise ValueError("Invalid gene expression input(s): " + "; ".join(bad))
+
 
 def z_score(value: float, mean: float, std: float) -> float:
     """Compute z-score against a reference distribution."""
@@ -147,8 +176,14 @@ def classify_tier(
     return "TIER_3_ACCESSIBLE", None
 
 
-# ── PLATINUM_SCORE: Elastic Net Cox Continuous Score ─────────────────────────
-# Validated across 16 independent cohorts (n=2,444).
+# ── PLATINUM_SCORE: Elastic Net Cox Continuous Score (PROGNOSTIC) ─────────────
+# HONEST VALIDATION (see AUDIT.md / audit_ledger.json):
+#   This is the PROGNOSTIC survival fingerprint (FAP_z/CXCL10_z). Its cross-cohort
+#   prognostic signal is SUPPORTED: pooled cohort-stratified Cox across 6 cohorts,
+#   n=1,236, HR 0.677 (95% CI 0.551-0.832), p=2.04e-4.
+#   It is NOT a "16-cohort / 2,444-patient validated" claim (that figure is not backed
+#   by any shipped artifact) and it is NOT a platinum-RESPONSE (predictive) model — see
+#   predictive_axis.py for the distinct CXCL12/POSTN response axis.
 # Coefficients frozen from continuous_survival_score_elastic_net.R output.
 # PLATINUM_SCORE ∈ [0,1] where higher = better predicted survival.
 
@@ -195,9 +230,9 @@ def compute_platinum_score(fap_z: float, cxcl10_z: float) -> dict:
         "risk_tier": risk_tier,
         "binary_HR_estimate": HR_BINARY_FINGERPRINT,
         "continuous_HR_estimate": HR_CONTINUOUS_THRESHOLD,
-        # C5: RESEARCH_USE_ONLY — not "VALIDATED_16_COHORTS"
+        # C5: RESEARCH_USE_ONLY — never asserts a 16-cohort validation (see AUDIT.md)
         "score_confidence": "RESEARCH_USE_ONLY",
-        "PLATINUM_SCORE_percentile_reference": "METAGX_POOLED_n2444",
+        "PLATINUM_SCORE_percentile_reference": "PROGNOSTIC_FINGERPRINT_6COHORT_n1236",
     }
 
 
@@ -223,8 +258,14 @@ def compute_all_scores(
     gene_values: Dict[str, Optional[float]],
     ref_means: Dict[str, float],
     ref_stds: Dict[str, float],
+    normalization: str = "raw",
 ) -> Dict[str, object]:
-    """Master scoring function. Returns all computed scores and classifications."""
+    """Master scoring function. Returns all computed scores and classifications.
+
+    `normalization` is passed through to the predictive platinum-response axis; a
+    thresholded response CALL is only emitted when normalization="quantile_to_reference".
+    """
+    _validate_gene_values(gene_values)
     zscores = z_score_genes(gene_values, ref_means, ref_stds)
 
     fap_z = zscores.get("FAP", 0.0)
@@ -250,6 +291,13 @@ def compute_all_scores(
     # C4: Metformin eligibility
     met = determine_metformin_eligibility(oct1_status, slc22a1_z)
 
+    # PREDICTIVE platinum-response axis (CXCL12/POSTN) — distinct from prognostic PLATINUM_SCORE.
+    # API inputs are raw expression (TPM), while the predictive scaler was fit in log2 space,
+    # so we tell the predictive axis to apply log2(x+1) before scaling.
+    predictive = compute_platinum_response_score(
+        gene_values, normalization=normalization, input_is_log2=False
+    )
+
     return {
         "zscores": zscores,
         "FAP_zscore": round(fap_z, 4),
@@ -264,6 +312,22 @@ def compute_all_scores(
         "fingerprint_positive": fingerprint,
         "TIER": tier,
         "TIER_REFINED": tier_refined,
+        # CA-3 (AUDIT.md): tier survival-separation did NOT replicate externally.
+        "tier_discovery_only": True,
+        "tier_validation_note": (
+            "Tier survival-separation is DISCOVERY/EXPLORATORY only. It did not replicate in any "
+            "external cohort with a usable log-rank statistic (5/5 fail: GSE32062 p=0.93, GSE102073 "
+            "p=0.48, GSE17260 p=0.82, GSE26712 p=0.89, GSE49997 p=0.06). Do not treat tier "
+            "assignment as a validated survival stratifier."
+        ),
+        # PREDICTIVE platinum-response axis (see predictive_axis.py; verdict INCONCLUSIVE)
+        "PLATINUM_RESPONSE_SCORE": predictive["PLATINUM_RESPONSE_SCORE"],
+        "platinum_response_verdict": predictive["platinum_response_verdict"],
+        "platinum_response_call": predictive["platinum_response_call"],
+        "platinum_response_calibration_required": predictive["platinum_response_calibration_required"],
+        "platinum_response_calibrated": predictive["platinum_response_calibrated"],
+        "platinum_response_axis_note": predictive["platinum_response_axis_note"],
+        "platinum_response_model": predictive["platinum_response_model"],
         # PLATINUM_SCORE
         "PLATINUM_SCORE": ps["PLATINUM_SCORE"],
         "PLATINUM_SCORE_percentile": ps["PLATINUM_SCORE_percentile"],

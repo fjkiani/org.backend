@@ -1,0 +1,184 @@
+{
+  "audit_id": "platinum_window_clinical_grade_audit",
+  "generated_utc": "2026-07-19T09:03:48Z",
+  "auditor": "independent recompute from shipped artifacts (lifelines Cox / log-rank), not manifest trust",
+  "capability": "capabilities/platinum_window",
+  "prior_model_version": "1.0.2",
+  "summary": {
+    "supported": 1,
+    "overstated": 2,
+    "missing": 1,
+    "low_n_disclosed": 1,
+    "headline": "The prognostic FAP/CXCL10 fingerprint is genuinely validated cross-cohort (6 cohorts, n=1,236, HR 0.677, p=2e-4). The tier survival-separation system does NOT replicate externally. The advertised '16 cohorts / 2,444 patients validated' is not backed by any shipped artifact. The manuscript CXCL12/POSTN predictive model is absent from deployed code and is INCONCLUSIVE where tested."
+  },
+  "claims": {
+    "C1_fingerprint_prognostic_pooled": {
+      "claim": "FAP_z<0 & CXCL10_z>0 fingerprint is prognostic for OS across cohorts",
+      "n": 1236,
+      "n_cohorts": 6,
+      "cohorts": [
+        "GSE102073",
+        "GSE17260",
+        "GSE26712",
+        "GSE32062",
+        "GSE49997",
+        "hgsoc_tcga_gdc"
+      ],
+      "recomputed_HR": 0.6768,
+      "recomputed_CI": [
+        0.5508,
+        0.8317
+      ],
+      "recomputed_p": 0.00020428500379432205,
+      "manifest_HR": 0.6768,
+      "manifest_p": 0.000204,
+      "status": "SUPPORTED",
+      "method": "Cox PH stratified by cohort (lifelines), recomputed from shipped cross_cohort_fingerprint_pooled.csv"
+    },
+    "C2_tier_survival_separation": {
+      "claim": "3-tier (TIER_1/2/3) system separates survival in external cohorts",
+      "external_manifests_total": 8,
+      "external_cohorts_with_usable_logrank_p": 5,
+      "external_cohorts_where_separation_fails": 5,
+      "n_cohorts_holds": 0,
+      "per_cohort": {
+        "validation_manifest.json": {
+          "cohort": "GSE32062",
+          "n": 260,
+          "validation_holds": false,
+          "logrank_p": 0.9292429879954928,
+          "has_usable_logrank_p": true
+        },
+        "validation_manifest_cptac.json": {
+          "cohort": "ovary_cptac_gdc",
+          "n": 101,
+          "validation_holds": false,
+          "logrank_p": null,
+          "has_usable_logrank_p": false
+        },
+        "validation_manifest_gse102073.json": {
+          "cohort": "GSE102073",
+          "n": 85,
+          "validation_holds": false,
+          "logrank_p": 0.47582999073708787,
+          "has_usable_logrank_p": true
+        },
+        "validation_manifest_gse17260.json": {
+          "cohort": "GSE17260",
+          "n": null,
+          "validation_holds": false,
+          "logrank_p": 0.8205332815343472,
+          "has_usable_logrank_p": true
+        },
+        "validation_manifest_gse26712.json": {
+          "cohort": "GSE26712",
+          "n": null,
+          "validation_holds": false,
+          "logrank_p": 0.8901461815538939,
+          "has_usable_logrank_p": true
+        },
+        "validation_manifest_gse49997.json": {
+          "cohort": "GSE49997",
+          "n": null,
+          "validation_holds": false,
+          "logrank_p": 0.060179773366526024,
+          "has_usable_logrank_p": true
+        },
+        "validation_manifest_msk2025.json": {
+          "cohort": "ovarian_msk_2025",
+          "n": null,
+          "validation_holds": false,
+          "logrank_p": null,
+          "has_usable_logrank_p": false
+        },
+        "validation_manifest_stub.json": {
+          "cohort": "GSE32062",
+          "n": 0,
+          "validation_holds": false,
+          "logrank_p": null,
+          "has_usable_logrank_p": false
+        }
+      },
+      "failing_cohorts": [
+        "GSE32062 (log-rank p=0.929, n=260)",
+        "GSE102073 (log-rank p=0.476, n=85)",
+        "GSE17260 (log-rank p=0.821)",
+        "GSE26712 (log-rank p=0.890)",
+        "GSE49997 (log-rank p=0.060)"
+      ],
+      "manifests_without_usable_logrank_p": [
+        "ovary_cptac_gdc (CPTAC)",
+        "ovarian_msk_2025 (MSK)",
+        "stub"
+      ],
+      "status": "OVERSTATED",
+      "note": "Tier survival-separation did NOT replicate externally in ANY cohort with a usable log-rank statistic: 5/5 external cohorts fail (all p>=0.05, none significant); 0 cohorts hold. The remaining 3 manifests carry no usable log-rank p (CPTAC/MSK/stub) and cannot verify a positive claim. Relabeled discovery/exploratory.",
+      "method": "Robust re-scan of all validation_manifest*.json, keyed on presence of a usable log-rank p (metadata-independent)."
+    },
+    "C3_advertised_16_cohorts_2444": {
+      "claim": "config.py VALIDATION_CTX: cohorts_validated=16, patients_validated=2444, framed as validated",
+      "largest_supporting_artifact": {
+        "analysis": "pooled fingerprint Cox",
+        "n_cohorts": 6,
+        "n_patients": 1236
+      },
+      "status": "UNVERIFIED_OVERSTATED",
+      "note": "No shipped artifact demonstrates a 16-cohort / 2444-patient validation. The strongest real evidence is the 6-cohort/n=1236 prognostic Cox. The '16/2444 validated' framing is not backed by a matching artifact and conflates prognostic signal with tier/predictive validation."
+    },
+    "C4_predictive_model_deployment": {
+      "claim": "The manuscript headline CXCL12/POSTN predictive platinum-response model is deployed",
+      "present_in_code": false,
+      "manuscript_verdict": "INCONCLUSIVE (GSE63885 OOD AUROC 0.638, 95%CI 0.513-0.764, p=0.031; nested-CV 0.592+/-0.112; EPV~0.36)",
+      "status": "MISSING",
+      "note": "Deployed PLATINUM_SCORE is the FAP/CXCL10 PROGNOSTIC model. The CXCL12/POSTN PREDICTIVE model is absent. Being added as a new distinct axis (W2), labeled INCONCLUSIVE + calibration-required."
+    },
+    "C5_label_certainty": {
+      "claim": "Platinum-response labels are well-populated for TCGA reference",
+      "n_confirmed": 9,
+      "km_events": 5,
+      "status": "LOW_N_DISCLOSED",
+      "note": "Only 9 TCGA patients have confirmed platinum-response labels (all sensitive). Already disclosed in shipped audit; not a hidden gap, but limits any TCGA-based platinum-response calibration."
+    }
+  },
+  "corrective_actions": [
+    {
+      "id": "CA-1",
+      "target": "config.py VALIDATION_CTX",
+      "action": "Replace flat cohorts_validated=16/patients_validated=2444 with a structured claim_status object: prognostic_fingerprint = SUPPORTED (6 cohorts, n=1236, HR 0.677, p=2e-4); tier_survival_separation = NOT_EXTERNALLY_REPLICATED (5/5 external cohorts fail, all p>=0.05; discovery/exploratory); predictive_platinum_response = INCONCLUSIVE (calibration-required)."
+    },
+    {
+      "id": "CA-2",
+      "target": "scorer.py comments/score_confidence",
+      "action": "Remove 'Validated across 16 independent cohorts (n=2,444)'. score_confidence must never assert VALIDATED_16_COHORTS."
+    },
+    {
+      "id": "CA-3",
+      "target": "tier classification outputs",
+      "action": "Annotate tier fields discovery_only=true; response must state tier survival-separation did not replicate externally."
+    },
+    {
+      "id": "CA-4",
+      "target": "predictive axis",
+      "action": "Add CXCL12/POSTN frozen model as new PLATINUM_RESPONSE_SCORE, verdict INCONCLUSIVE, calibration-gated (W2)."
+    },
+    {
+      "id": "CA-5",
+      "target": "response payload",
+      "action": "Audit-invariant test: no response may assert any claim flagged OVERSTATED/UNVERIFIED in this ledger."
+    }
+  ],
+  "reproducibility": {
+    "fingerprint_cox": "lifelines CoxPHFitter, strata=[cohort], from cross_cohort_fingerprint_pooled.csv (1236 rows post-dropna)",
+    "recomputed_HR_matches_manifest": true,
+    "external_manifests_with_usable_logrank": [
+      "GSE32062 (p=0.929)",
+      "GSE102073 (p=0.476)",
+      "GSE17260 (p=0.821)",
+      "GSE26712 (p=0.890)",
+      "GSE49997 (p=0.060)"
+    ],
+    "external_manifests_without_data": [
+      "CPTAC, MSK2025, stub \u2014 no usable log-rank p; treated as non-supporting"
+    ]
+  }
+}
